@@ -13,11 +13,7 @@ import React, {
   ListView
 } from 'react-native';
 
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
-
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+var api = require('./utils/api.js');
 
 class TestProject extends Component {
   constructor(props) {
@@ -35,10 +31,10 @@ class TestProject extends Component {
   }
 
   fetchData() {
-    fetch(REQUEST_URL)
+    debugger
+    fetch(api.url)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('test')
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
           loaded: true
